@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="include\Util.h" />
+    <ClCompile Include="src\Chart.cpp" />
+    <ClCompile Include="src\GUI.cpp" />
+    <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\Matrix.cpp" />
+    <ClCompile Include="src\GUIMyFrame1.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\GUI.h" />
+    <ClInclude Include="include\GUIMyFrame1.h" />
+    <ClInclude Include="include\Chart.h" />
+    <ClInclude Include="include\Matrix.h" />
+  </ItemGroup>
+</Project>

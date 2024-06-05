@@ -1,0 +1,1 @@
+Pobrać i wrzucić tu wxwidgetsy skompilowane, jak potrzeba to wyśle zipa.
