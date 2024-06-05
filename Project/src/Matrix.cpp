@@ -6,7 +6,7 @@
 
 Vector3::Vector3() {
 	std::fill(std::begin(data), std::end(data), 0);
-	*std::end(data) = 1;
+	*std::rbegin(data) = 1;
 }
 
 Vector3& Vector3::operator=(const Vector3& other) {
@@ -38,7 +38,12 @@ void Vector3::set_value(double x, double y, double z) {
 
 Vector4::Vector4() {
 	std::fill(std::begin(data), std::end(data), 0);
-	*std::end(data) = 1;
+	*std::rbegin(data) = 1;
+}
+
+Vector4& Vector4::operator=(const Vector4& other) {
+	std::copy(std::cbegin(other.data), std::cend(other.data), std::begin(data));
+	return *this;
 }
 
 double Vector4::get_X() const {
@@ -64,19 +69,13 @@ void Vector4::set_value(double x, double y, double z, double w) {
 	data[3] = w;
 }
 
-Vector4& Vector4::operator=(const Vector4& other) {
-	std::copy(std::cbegin(other.data), std::cend(other.data), std::begin(data));
-	return *this;
-}
-
 // end Vector4 //
 
 // Matrix3 //
 
 Matrix3::Matrix3() {
 	std::fill(std::begin(data[0]), std::end(data[2]), 0);
-	*std::end(data[2]) = 1;
-
+	*std::rbegin(data[2]) = 1;
 }
 
 Matrix3& Matrix3::operator=(const Matrix3& other) {
@@ -134,7 +133,7 @@ Matrix3 Matrix3::get_rotation(double angle) {
 
 Matrix4::Matrix4() {
 	std::fill(std::begin(data[0]), std::end(data[3]), 0);
-	*std::end(data[3]) = 1;
+	*std::rbegin(data[3]) = 1;
 }
 
 Matrix4& Matrix4::operator=(const Matrix4& other) {
