@@ -15,8 +15,8 @@
 #include <wx/font.h>
 #include <wx/colour.h>
 #include <wx/settings.h>
-#include <wx/slider.h>
 #include <wx/stattext.h>
+#include <wx/slider.h>
 #include <wx/textctrl.h>
 #include <wx/button.h>
 #include <wx/bitmap.h>
@@ -38,21 +38,21 @@ class MyFrame1 : public wxFrame
 
 	protected:
 		wxCheckBox* mode_CheckBox;
-		wxSlider* R_slider;
 		wxStaticText* m_staticText_R;
+		wxSlider* R_slider;
 		wxTextCtrl* R_value_input;
-		wxSlider* Tetha_slider;
 		wxStaticText* m_staticText_Theta;
+		wxSlider* Tetha_slider;
 		wxTextCtrl* Tetha_value_input;
-		wxSlider* Phi_slider;
 		wxStaticText* m_staticText_Phi;
+		wxSlider* Phi_slider;
 		wxTextCtrl* Phi_value_input;
-		wxSlider* X_rot_slider;
 		wxStaticText* m_staticText_X;
-		wxSlider* Y_rot_slider;
+		wxSlider* X_rot_slider;
 		wxStaticText* m_staticText_Y;
-		wxSlider* Z_rot_slider;
+		wxSlider* Y_rot_slider;
 		wxStaticText* m_staticText_Z;
+		wxSlider* Z_rot_slider;
 		wxButton* Save_button;
 		wxPanel* m_panel1;
 

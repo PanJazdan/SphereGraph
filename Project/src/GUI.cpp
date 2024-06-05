@@ -22,70 +22,70 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	mode_CheckBox = new wxCheckBox( this, wxID_ANY, wxT("Check Me!"), wxDefaultPosition, wxDefaultSize, 0 );
 	bSizer2->Add( mode_CheckBox, 0, wxALIGN_CENTER|wxALL, 5 );
 
-	R_slider = new wxSlider( this, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );
-	R_slider->SetBackgroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_SCROLLBAR ) );
-
-	bSizer2->Add( R_slider, 0, wxALIGN_CENTER|wxALL, 5 );
-
 	m_staticText_R = new wxStaticText( this, wxID_ANY, wxT("Promień"), wxPoint( -1,-1 ), wxSize( -1,-1 ), 0 );
 	m_staticText_R->Wrap( -1 );
 	m_staticText_R->SetBackgroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_APPWORKSPACE ) );
 
 	bSizer2->Add( m_staticText_R, 0, wxALIGN_CENTER|wxALL|wxRESERVE_SPACE_EVEN_IF_HIDDEN, 5 );
 
+	R_slider = new wxSlider( this, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );
+	R_slider->SetBackgroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_SCROLLBAR ) );
+
+	bSizer2->Add( R_slider, 0, wxALIGN_CENTER|wxALL, 5 );
+
 	R_value_input = new wxTextCtrl( this, wxID_ANY, wxT("5"), wxDefaultPosition, wxDefaultSize, 0 );
 	bSizer2->Add( R_value_input, 0, wxALIGN_CENTER|wxALL, 5 );
+
+	m_staticText_Theta = new wxStaticText( this, wxID_ANY, wxT("Theta"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText_Theta->Wrap( -1 );
+	bSizer2->Add( m_staticText_Theta, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 5 );
 
 	Tetha_slider = new wxSlider( this, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );
 	Tetha_slider->SetBackgroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_SCROLLBAR ) );
 
 	bSizer2->Add( Tetha_slider, 0, wxALIGN_CENTER|wxALL, 5 );
 
-	m_staticText_Theta = new wxStaticText( this, wxID_ANY, wxT("Theta"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText_Theta->Wrap( -1 );
-	bSizer2->Add( m_staticText_Theta, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 5 );
-
 	Tetha_value_input = new wxTextCtrl( this, wxID_ANY, wxT("5"), wxDefaultPosition, wxDefaultSize, 0 );
 	bSizer2->Add( Tetha_value_input, 0, wxALIGN_CENTER|wxALL, 5 );
+
+	m_staticText_Phi = new wxStaticText( this, wxID_ANY, wxT("Phi"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText_Phi->Wrap( -1 );
+	bSizer2->Add( m_staticText_Phi, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 5 );
 
 	Phi_slider = new wxSlider( this, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );
 	Phi_slider->SetBackgroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_SCROLLBAR ) );
 
 	bSizer2->Add( Phi_slider, 0, wxALIGN_CENTER|wxALL, 5 );
 
-	m_staticText_Phi = new wxStaticText( this, wxID_ANY, wxT("Phi"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText_Phi->Wrap( -1 );
-	bSizer2->Add( m_staticText_Phi, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 5 );
-
 	Phi_value_input = new wxTextCtrl( this, wxID_ANY, wxT("5"), wxDefaultPosition, wxDefaultSize, 0 );
 	bSizer2->Add( Phi_value_input, 0, wxALIGN_CENTER|wxALL, 5 );
+
+	m_staticText_X = new wxStaticText( this, wxID_ANY, wxT("Obrót X"), wxDefaultPosition, wxSize( -1,-1 ), 0 );
+	m_staticText_X->Wrap( -1 );
+	bSizer2->Add( m_staticText_X, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 5 );
 
 	X_rot_slider = new wxSlider( this, wxID_ANY, 0, 0, 360, wxDefaultPosition, wxSize( -1,-1 ), wxSL_HORIZONTAL );
 	X_rot_slider->SetBackgroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_SCROLLBAR ) );
 
 	bSizer2->Add( X_rot_slider, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 5 );
 
-	m_staticText_X = new wxStaticText( this, wxID_ANY, wxT("Obrót X"), wxDefaultPosition, wxSize( -1,-1 ), 0 );
-	m_staticText_X->Wrap( -1 );
-	bSizer2->Add( m_staticText_X, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 5 );
+	m_staticText_Y = new wxStaticText( this, wxID_ANY, wxT("Obrót Y"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText_Y->Wrap( -1 );
+	bSizer2->Add( m_staticText_Y, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 5 );
 
 	Y_rot_slider = new wxSlider( this, wxID_ANY, 0, 0, 360, wxDefaultPosition, wxSize( -1,-1 ), wxSL_HORIZONTAL );
 	Y_rot_slider->SetBackgroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_SCROLLBAR ) );
 
 	bSizer2->Add( Y_rot_slider, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 5 );
 
-	m_staticText_Y = new wxStaticText( this, wxID_ANY, wxT("Obrót Y"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText_Y->Wrap( -1 );
-	bSizer2->Add( m_staticText_Y, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 5 );
+	m_staticText_Z = new wxStaticText( this, wxID_ANY, wxT("Obrót Z"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText_Z->Wrap( -1 );
+	bSizer2->Add( m_staticText_Z, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 5 );
 
 	Z_rot_slider = new wxSlider( this, wxID_ANY, 0, 0, 360, wxDefaultPosition, wxSize( -1,-1 ), wxSL_HORIZONTAL );
 	Z_rot_slider->SetBackgroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_SCROLLBAR ) );
 
 	bSizer2->Add( Z_rot_slider, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 5 );
-
-	m_staticText_Z = new wxStaticText( this, wxID_ANY, wxT("Obrót Z"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText_Z->Wrap( -1 );
-	bSizer2->Add( m_staticText_Z, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 5 );
 
 	Save_button = new wxButton( this, wxID_ANY, wxT("Zapisz"), wxDefaultPosition, wxDefaultSize, 0 );
 	bSizer2->Add( Save_button, 0, wxALIGN_CENTER|wxALL, 5 );
