@@ -9,31 +9,28 @@ void Chart::draw(wxDC* dc, unsigned width, unsigned height, Mode mode) {
 	dc->SetBackground(wxBrush(wxColour(255, 255, 255)));
 	dc->Clear();
 	dc->SetPen(wxPen(wxColour(255, 0, 0)));
-	double theta = THETA_MIN;
-	double phi = PHI_MIN;
+
 	double dphi = (PHI_MAX - PHI_MIN) / (m_res_phi - 1);
 	double dtheta = (THETA_MAX - THETA_MIN) / (m_res_theta - 1);
 
-	double w_min = functionValue(m_r, theta, phi);
-	double w_max = functionValue(m_r, theta, phi);
+	double w_min = functionValue(m_r, THETA_MIN, PHI_MIN);
+	double w_max = w_min;
 
 	for (int i = 0; i < m_res_theta; i++) {
+		double theta = THETA_MIN + dtheta * i;
 		for (int j = 0; j < m_res_phi; j++) {
+			double phi = PHI_MIN + dphi * j;
 			double w = functionValue(m_r, theta, phi);
 
 			if (w > w_max) w_max = w;
 			if (w < w_min) w_min = w;
-
-			phi += dphi;
 		}
-		theta += dtheta;
 	}
 
-	theta = THETA_MIN;
-	phi = PHI_MIN;
-
 	for (int i = 0; i < m_res_theta; i++) {
+		double theta = THETA_MIN + dtheta * i;
 		for (int j = 0; j < m_res_phi; j++) {
+			double phi = PHI_MIN + dphi * j;
 			double w = functionValue(m_r, theta, phi);
 
 			if (mode == Mode::COLOUR) {
