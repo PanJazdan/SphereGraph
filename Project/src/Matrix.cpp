@@ -75,7 +75,6 @@ void Vector4::set_value(double x, double y, double z, double w) {
 
 Matrix3::Matrix3() {
 	std::fill(std::begin(data[0]), std::end(data[2]), 0);
-	*std::rbegin(data[2]) = 1;
 }
 
 Matrix3& Matrix3::operator=(const Matrix3& other) {
@@ -105,10 +104,19 @@ Vector3 Matrix3::operator*(const Vector3& other) {
 	return result;
 }
 
+Matrix3 Matrix3::get_identity() {
+	Matrix3 r;
+	r.data[0][0] = 1;
+	r.data[1][1] = 1;
+	r.data[2][2] = 1;
+	return r;
+}
+
 Matrix3 Matrix3::get_translation(double dx, double dy) {
 	Matrix3 r;
 	r.data[0][2] = dx;
 	r.data[1][2] = dy;
+	r.data[2][2] = 1;
 	return r;
 }
 
@@ -116,6 +124,7 @@ Matrix3 Matrix3::get_scale(double sx, double sy) {
 	Matrix3 r;
 	r.data[0][0] = sx;
 	r.data[1][1] = sy;
+	r.data[2][2] = 1;
 	return r;
 }
 
@@ -133,7 +142,6 @@ Matrix3 Matrix3::get_rotation(double angle) {
 
 Matrix4::Matrix4() {
 	std::fill(std::begin(data[0]), std::end(data[3]), 0);
-	*std::rbegin(data[3]) = 1;
 }
 
 Matrix4& Matrix4::operator=(const Matrix4& other) {
@@ -163,11 +171,25 @@ Vector4 Matrix4::operator*(const Vector4& other) {
 	return result;
 }
 
+Matrix4 Matrix4::get_identity() {
+	Matrix4 r;
+	r.data[0][0] = 1;
+	r.data[1][1] = 1;
+	r.data[2][2] = 1;
+	r.data[3][3] = 1;
+	return r;
+}
+
 Matrix4 Matrix4::get_translation(double dx, double dy, double dz) {
 	Matrix4 r;
 	r.data[0][3] = dx;
 	r.data[1][3] = dy;
 	r.data[2][3] = dz;
+
+	r.data[0][0] = 1;
+	r.data[1][1] = 1;
+	r.data[2][2] = 1;
+	r.data[3][3] = 1;
 	return r;
 }
 
@@ -176,6 +198,7 @@ Matrix4 Matrix4::get_scale(double sx, double sy, double sz) {
 	r.data[0][0] = sx;
 	r.data[1][1] = sy;
 	r.data[2][2] = sz;
+	r.data[3][3] = 1;
 	return r;
 }
 
@@ -184,6 +207,7 @@ Matrix4 Matrix4::get_rotation_X(double angle) {
 	r.data[0][0] = 1; 
 	r.data[1][1] = cos(angle); r.data[1][2] = -sin(angle);
 	r.data[2][1] = sin(angle); r.data[2][2] = cos(angle);
+	r.data[3][3] = 1;
 	return r;
 }
 
@@ -192,6 +216,7 @@ Matrix4 Matrix4::get_rotation_Y(double angle) {
 	r.data[0][0] = cos(angle);  r.data[0][2] = sin(angle);
 	r.data[1][1] = 1;
 	r.data[2][0] = -sin(angle); r.data[2][2] = cos(angle);
+	r.data[3][3] = 1;
 	return r;
 }
 
@@ -200,6 +225,7 @@ Matrix4 Matrix4::get_rotation_Z(double angle) {
 	r.data[0][0] = cos(angle); r.data[0][1] = -sin(angle);
 	r.data[1][0] = sin(angle); r.data[1][1] = cos(angle);
 	r.data[2][2] = 1;
+	r.data[3][3] = 1;
 	return r;
 }
 

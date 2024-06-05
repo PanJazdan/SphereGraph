@@ -44,6 +44,7 @@ public:
 	Matrix3 operator*(const Matrix3& other);
 	Vector3 operator*(const Vector3& other);
 
+	static Matrix3 get_identity();
 	static Matrix3 get_translation(double dx, double dy);
 	static Matrix3 get_scale(double sx, double sy);
 	static Matrix3 get_rotation(double angle);
@@ -59,6 +60,7 @@ public:
 	Matrix4 operator*(const Matrix4& other);
 	Vector4 operator*(const Vector4& other);
 
+	static Matrix4 get_identity();
 	static Matrix4 get_translation(double dx, double dy, double dz);
 	static Matrix4 get_scale(double sx, double sy, double sz);
 	static Matrix4 get_rotation_X(double angle);
