@@ -19,7 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="include\Util.h" />
     <ClCompile Include="src\Chart.cpp" />
     <ClCompile Include="src\GUI.cpp" />
     <ClCompile Include="src\GUIMyFrame1.cpp" />
