@@ -17,7 +17,7 @@ enum class Mode {
 class Chart {
 public:
 	double functionValue(double r, double theta, double phi);
-	void draw(wxDC* dc, unsigned width, unsigned height, Mode mode);
+	void draw(wxDC* dc, int width, int height, Mode mode);
 
 	void setResPhi(double res_phi) { m_res_phi = res_phi; }
 	void setResTheta(double res_theta) { m_res_theta = res_theta; }
