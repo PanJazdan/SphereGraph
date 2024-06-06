@@ -7,6 +7,10 @@ GUIMyFrame1::GUIMyFrame1(wxWindow* parent)
 	MyFrame1(parent)
 {
 	chart = new Chart();
+	chart->setRadius(200);
+	chart->setResPhi(100);
+	chart->setResTheta(100);
+	chart->setfunctionRange();
 }
 
 GUIMyFrame1::~GUIMyFrame1() {
