@@ -105,6 +105,6 @@ void Chart::draw(wxDC* dc, int width, int height, Mode mode) {
 }
 
 
-void Chart::drawCurve(wxDC* dc, int width, int height, double value) {
-
-}
+//void Chart::drawCurve(wxDC* dc, int width, int height, double value) {
+//
+//}

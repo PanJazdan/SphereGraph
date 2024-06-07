@@ -102,27 +102,25 @@ void GUIMyFrame1::Phi_value_OnText(wxCommandEvent& event)
 
 void GUIMyFrame1::Save_buttonOnButtonClick(wxCommandEvent& event)
 {
-	wxString filename = wxFileSelector("Save Image",
-		wxEmptyString,
-		wxEmptyString,
-		wxEmptyString,
-#if wxUSE_LIBPNG
-		"PNG files (*.png)|*.png|"
-#endif
-#if wxUSE_LIBJPEG
-		"JPEG files (*.jpg)|*.jpg"
-#endif
-,
-		wxFD_SAVE | wxFD_OVERWRITE_PROMPT,
-		this);
-	wxImage::AddHandler(new wxPNGHandler);
-	wxImage::AddHandler(new wxJPEGHandler);
-	if (!filename.empty())
-	{
-		wxClientDC dc1(m_panel1);
-		wxBufferedDC dc(&dc1);
-		dc.GetAsBitmap().SaveFile(filename, wxBITMAP_TYPE_PNG);
-	}
+	 wxSize size = m_panel1->GetClientSize();
+        wxBitmap bitmap(size.x, size.y);
+        wxMemoryDC memDC(bitmap);
+        wxClientDC clientDC(m_panel1);
+        memDC.Blit(0, 0, size.x, size.y, &clientDC, 0, 0);
+        memDC.SelectObject(wxNullBitmap);
+   
+        wxImage image = bitmap.ConvertToImage();
+
+        wxFileDialog saveFileDialog(this, "Save Drawing", "", "", 
+                                    "PNG files (*.png)|*.png|JPEG files (*.jpg)|*.jpg|BMP files (*.bmp)|*.bmp", 
+                                    wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
+
+		wxImage::AddHandler(new wxPNGHandler);
+		wxImage::AddHandler(new wxJPEGHandler);
+        if (saveFileDialog.ShowModal() == wxID_OK)
+        {
+            image.SaveFile(saveFileDialog.GetPath(), wxBITMAP_TYPE_PNG);
+        }
 	repaint();
 }
 
