@@ -12,6 +12,7 @@ GUIMyFrame1::GUIMyFrame1(wxWindow* parent)
 	chart->setResPhi(100);
 	chart->setResTheta(100);
 	chart->setfunctionRange();
+	this->MousePos = wxGetMousePosition();
 }
 
 GUIMyFrame1::~GUIMyFrame1() {
@@ -147,5 +148,24 @@ void GUIMyFrame1::Z_rot_sliderOnScroll(wxScrollEvent& event)
 	chart->setRotZ(value);
 	repaint();
 	// TODO: Implement Z_rot_sliderOnScroll
+}
+
+void GUIMyFrame1::m_panel1OnMotion(wxMouseEvent& event)
+{	
+	wxPoint tmp_pos;
+	if (!event.LeftIsDown()) {
+		tmp_pos = event.GetPosition();
+	}
+
+	if (event.Dragging()) {
+		if (tmp_pos != this->MousePos) {
+
+			chart->setRotY((tmp_pos.x - this->MousePos.x) * M_PI / 360);
+			chart->setRotX((tmp_pos.y - this->MousePos.y) * M_PI / -360);
+			repaint();
+		}
+	}
+	this->MousePos = event.GetPosition();
+
 }
 

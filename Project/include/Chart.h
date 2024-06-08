@@ -31,6 +31,7 @@ private:
 	unsigned m_res_phi, m_res_theta;
 	double m_rotX, m_rotY, m_rotZ;
 	double m_w_min, m_w_max;
+	
 };
 
 #endif // !__Chart__

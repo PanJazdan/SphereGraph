@@ -69,6 +69,7 @@ class MyFrame1 : public wxFrame
 		virtual void Z_rot_sliderOnScroll( wxScrollEvent& event ) { event.Skip(); }
 		virtual void Save_buttonOnButtonClick( wxCommandEvent& event ) { event.Skip(); }
 		virtual void m_panel1OnUpdateUI( wxUpdateUIEvent& event ) { event.Skip(); }
+		virtual void m_panel1OnMotion(wxMouseEvent& event) { event.Skip(); }
 
 
 	public:

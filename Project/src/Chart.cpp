@@ -7,7 +7,7 @@
 // rysowanie na bitmapie
 
 double Chart::functionValue(double r, double theta, double phi) {
-	return sin(2*phi) ;
+	return sin(2*phi)+32*cos(r)*sin(3*theta); ;
 }
 
 void Chart::setfunctionRange() {
@@ -37,8 +37,8 @@ void Chart::draw(wxDC* dc, int width, int height, Mode mode) {
 	arr.reserve(m_res_theta * m_res_phi);
 
 	Matrix4 rotation = Matrix4::get_identity();
-	rotation = rotation * Matrix4::get_rotation_X(m_rotX);
 	rotation = rotation * Matrix4::get_rotation_Y(m_rotY);
+	rotation = rotation * Matrix4::get_rotation_X(m_rotX);
 	rotation = rotation * Matrix4::get_rotation_Z(m_rotZ);
 
 	Matrix4 transform = Matrix4::get_identity();

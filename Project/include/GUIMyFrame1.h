@@ -28,6 +28,7 @@ protected:
 	void Z_rot_sliderOnScroll(wxScrollEvent& event);
 	void Save_buttonOnButtonClick(wxCommandEvent& event);
 	void m_panel1OnUpdateUI(wxUpdateUIEvent& event);
+	void m_panel1OnMotion(wxMouseEvent& event);
 public:
 	/** Constructor */
 	GUIMyFrame1(wxWindow* parent);
@@ -36,6 +37,7 @@ public:
 	//// end generated class members
 
 	Chart* chart;
+	wxPoint MousePos ;
 
 
 };
