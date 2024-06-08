@@ -11,11 +11,12 @@ GUIMyFrame1::GUIMyFrame1(wxWindow* parent)
 	chart->setRadius(200);
 	chart->setResPhi(100);
 	chart->setResTheta(100);
-	chart->setfunctionRange();
+	chart->setfunctionRange(fun_equation.c_str());
 	this->MousePos = wxGetMousePosition();
 }
 
 GUIMyFrame1::~GUIMyFrame1() {
+	delete fun_expr_textCtrl;
 	delete chart;
 }
 
@@ -25,10 +26,17 @@ void GUIMyFrame1::repaint() {
 
 	Mode mode = (mode_CheckBox->IsChecked() ? Mode::COLOUR : Mode::VALUE);
 	wxSize size = m_panel1->GetSize();
-	chart->draw(&dc, size.GetWidth(), size.GetHeight(), mode);
+	chart->draw(&dc, size.GetWidth(), size.GetHeight(), mode,this->fun_equation.c_str());
 }
 
 void GUIMyFrame1::m_panel1OnUpdateUI(wxUpdateUIEvent& event) {
+	repaint();
+}
+
+void GUIMyFrame1::function_equationOnText(wxCommandEvent& event)
+{
+
+	fun_equation = fun_expr_textCtrl->GetValue().ToStdString();
 	repaint();
 }
 
@@ -44,7 +52,7 @@ void GUIMyFrame1::R_sliderOnScroll(wxScrollEvent& event)
 	//TODO: update text
 	unsigned value = R_slider->GetValue();
 	chart->setRadius(value);
-	chart->setfunctionRange();
+	chart->setfunctionRange(this->fun_equation.c_str());
 	R_value_input->SetValue(std::to_string(value));
 	repaint();
 }
@@ -54,7 +62,7 @@ void GUIMyFrame1::R_value_inputOnText(wxCommandEvent& event)
 	int value;
 	R_value_input->GetValue().ToInt(&value);
 	chart->setRadius(value);
-	chart->setfunctionRange();
+	chart->setfunctionRange(this->fun_equation.c_str());
 	R_slider->SetValue(value);
 	repaint();
 }
@@ -64,7 +72,7 @@ void GUIMyFrame1::Tetha_sliderOnScroll(wxScrollEvent& event)
 	//TODO: update text
 	unsigned value = Tetha_slider->GetValue();
 	chart->setResTheta(value);
-	chart->setfunctionRange();
+	chart->setfunctionRange(this->fun_equation.c_str());
 	Tetha_value_input->SetValue(std::to_string(value));
 	repaint();
 }
@@ -75,7 +83,7 @@ void GUIMyFrame1::Tetha_value_inputOnText(wxCommandEvent& event)
 	int value;
 	Tetha_value_input->GetValue().ToInt(&value);
 	chart->setResTheta(value);
-	chart->setfunctionRange();
+	chart->setfunctionRange(this->fun_equation.c_str());
 	Tetha_slider->SetValue(value);
 	repaint();
 }
@@ -85,7 +93,7 @@ void GUIMyFrame1::Phi_sliderOnScroll(wxScrollEvent& event)
 	//TODO: update text
 	unsigned value = Phi_slider->GetValue();
 	chart->setResPhi(value);
-	chart->setfunctionRange();
+	chart->setfunctionRange(this->fun_equation.c_str());
 	Phi_value_input->SetValue(std::to_string(value));
 	repaint();
 }
@@ -96,7 +104,7 @@ void GUIMyFrame1::Phi_value_OnText(wxCommandEvent& event)
 	int value;
 	Phi_value_input->GetValue().ToInt(&value);
 	chart->setResPhi(value);
-	chart->setfunctionRange();
+	chart->setfunctionRange(this->fun_equation.c_str());
 	Phi_slider->SetValue(value);
 	repaint();
 }
@@ -154,7 +162,7 @@ void GUIMyFrame1::m_panel1OnMotion(wxMouseEvent& event)
 {	
 	wxPoint tmp_pos;
 	if (!event.LeftIsDown()) {
-		tmp_pos = event.GetPosition();
+		tmp_pos = event.GetPosition(); //zapamiêtanie ostatniej pozycji myszki przed klikniêciem 
 	}
 
 	if (event.Dragging()) {
@@ -166,6 +174,5 @@ void GUIMyFrame1::m_panel1OnMotion(wxMouseEvent& event)
 		}
 	}
 	this->MousePos = event.GetPosition();
-
 }
 

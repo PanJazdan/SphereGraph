@@ -22,6 +22,11 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	mode_CheckBox = new wxCheckBox( this, wxID_ANY, wxT("Check Me!"), wxDefaultPosition, wxDefaultSize, 0 );
 	bSizer2->Add( mode_CheckBox, 0, wxALIGN_CENTER|wxALL, 5 );
 
+	fun_expr_textCtrl = new wxTextCtrl( this, wxID_ANY, wxT("sin(2 * phi) + 32 * cos(r) * sin(3 * theta)"), wxDefaultPosition, wxSize( 200,-1 ), 0 );
+	fun_expr_textCtrl->SetFont( wxFont( 8, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, wxEmptyString ) );
+
+	bSizer2->Add( fun_expr_textCtrl, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 5 );
+
 	m_staticText_R = new wxStaticText( this, wxID_ANY, wxT("Promień"), wxPoint( -1,-1 ), wxSize( -1,-1 ), 0 );
 	m_staticText_R->Wrap( -1 );
 	m_staticText_R->SetBackgroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_APPWORKSPACE ) );
@@ -113,6 +118,7 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 
 	// Connect Events
 	mode_CheckBox->Connect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( MyFrame1::mode_OnCheck ), NULL, this );
+	fun_expr_textCtrl->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::function_equationOnText ), NULL, this );
 	R_slider->Connect( wxEVT_SCROLL_TOP, wxScrollEventHandler( MyFrame1::R_sliderOnScroll ), NULL, this );
 	R_slider->Connect( wxEVT_SCROLL_BOTTOM, wxScrollEventHandler( MyFrame1::R_sliderOnScroll ), NULL, this );
 	R_slider->Connect( wxEVT_SCROLL_LINEUP, wxScrollEventHandler( MyFrame1::R_sliderOnScroll ), NULL, this );
@@ -171,7 +177,7 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	Z_rot_slider->Connect( wxEVT_SCROLL_THUMBRELEASE, wxScrollEventHandler( MyFrame1::Z_rot_sliderOnScroll ), NULL, this );
 	Z_rot_slider->Connect( wxEVT_SCROLL_CHANGED, wxScrollEventHandler( MyFrame1::Z_rot_sliderOnScroll ), NULL, this );
 	Save_button->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MyFrame1::Save_buttonOnButtonClick ), NULL, this );
-	m_panel1->Connect(wxEVT_MOTION, wxMouseEventHandler(MyFrame1::m_panel1OnMotion), NULL, this);
+	m_panel1->Connect( wxEVT_MOTION, wxMouseEventHandler( MyFrame1::m_panel1OnMotion ), NULL, this );
 	m_panel1->Connect( wxEVT_UPDATE_UI, wxUpdateUIEventHandler( MyFrame1::m_panel1OnUpdateUI ), NULL, this );
 }
 
@@ -179,6 +185,7 @@ MyFrame1::~MyFrame1()
 {
 	// Disconnect Events
 	mode_CheckBox->Disconnect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( MyFrame1::mode_OnCheck ), NULL, this );
+	fun_expr_textCtrl->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::function_equationOnText ), NULL, this );
 	R_slider->Disconnect( wxEVT_SCROLL_TOP, wxScrollEventHandler( MyFrame1::R_sliderOnScroll ), NULL, this );
 	R_slider->Disconnect( wxEVT_SCROLL_BOTTOM, wxScrollEventHandler( MyFrame1::R_sliderOnScroll ), NULL, this );
 	R_slider->Disconnect( wxEVT_SCROLL_LINEUP, wxScrollEventHandler( MyFrame1::R_sliderOnScroll ), NULL, this );
@@ -237,7 +244,7 @@ MyFrame1::~MyFrame1()
 	Z_rot_slider->Disconnect( wxEVT_SCROLL_THUMBRELEASE, wxScrollEventHandler( MyFrame1::Z_rot_sliderOnScroll ), NULL, this );
 	Z_rot_slider->Disconnect( wxEVT_SCROLL_CHANGED, wxScrollEventHandler( MyFrame1::Z_rot_sliderOnScroll ), NULL, this );
 	Save_button->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MyFrame1::Save_buttonOnButtonClick ), NULL, this );
-	m_panel1->Disconnect(wxEVT_MOTION, wxMouseEventHandler(MyFrame1::m_panel1OnMotion), NULL, this);
+	m_panel1->Disconnect( wxEVT_MOTION, wxMouseEventHandler( MyFrame1::m_panel1OnMotion ), NULL, this );
 	m_panel1->Disconnect( wxEVT_UPDATE_UI, wxUpdateUIEventHandler( MyFrame1::m_panel1OnUpdateUI ), NULL, this );
 
 }

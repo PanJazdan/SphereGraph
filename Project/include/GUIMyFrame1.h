@@ -17,6 +17,7 @@ class GUIMyFrame1 : public MyFrame1
 protected:
 	// Handlers for MyFrame1 events.
 	void mode_OnCheck(wxCommandEvent& event);
+	void function_equationOnText(wxCommandEvent& event);
 	void R_sliderOnScroll(wxScrollEvent& event);
 	void R_value_inputOnText(wxCommandEvent& event);
 	void Tetha_sliderOnScroll(wxScrollEvent& event);
@@ -37,7 +38,8 @@ public:
 	//// end generated class members
 
 	Chart* chart;
-	wxPoint MousePos ;
+	wxPoint MousePos;
+	std::string fun_equation = fun_expr_textCtrl->GetValue().ToStdString();
 
 
 };

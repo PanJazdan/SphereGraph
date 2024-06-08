@@ -15,9 +15,9 @@
 #include <wx/font.h>
 #include <wx/colour.h>
 #include <wx/settings.h>
+#include <wx/textctrl.h>
 #include <wx/stattext.h>
 #include <wx/slider.h>
-#include <wx/textctrl.h>
 #include <wx/button.h>
 #include <wx/bitmap.h>
 #include <wx/image.h>
@@ -38,6 +38,7 @@ class MyFrame1 : public wxFrame
 
 	protected:
 		wxCheckBox* mode_CheckBox;
+		wxTextCtrl* fun_expr_textCtrl;
 		wxStaticText* m_staticText_R;
 		wxSlider* R_slider;
 		wxTextCtrl* R_value_input;
@@ -58,6 +59,7 @@ class MyFrame1 : public wxFrame
 
 		// Virtual event handlers, override them in your derived class
 		virtual void mode_OnCheck( wxCommandEvent& event ) { event.Skip(); }
+		virtual void function_equationOnText( wxCommandEvent& event ) { event.Skip(); }
 		virtual void R_sliderOnScroll( wxScrollEvent& event ) { event.Skip(); }
 		virtual void R_value_inputOnText( wxCommandEvent& event ) { event.Skip(); }
 		virtual void Tetha_sliderOnScroll( wxScrollEvent& event ) { event.Skip(); }
@@ -68,13 +70,13 @@ class MyFrame1 : public wxFrame
 		virtual void Y_rot_sliderOnScroll( wxScrollEvent& event ) { event.Skip(); }
 		virtual void Z_rot_sliderOnScroll( wxScrollEvent& event ) { event.Skip(); }
 		virtual void Save_buttonOnButtonClick( wxCommandEvent& event ) { event.Skip(); }
+		virtual void m_panel1OnMotion( wxMouseEvent& event ) { event.Skip(); }
 		virtual void m_panel1OnUpdateUI( wxUpdateUIEvent& event ) { event.Skip(); }
-		virtual void m_panel1OnMotion(wxMouseEvent& event) { event.Skip(); }
 
 
 	public:
 
-		MyFrame1( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 900,700 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
+		MyFrame1( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 900,750 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
 
 		~MyFrame1();
 
