@@ -10,18 +10,13 @@
 double Chart::functionValue(double r, double theta, double phi,const char* function) {
 	
 	double fun_val = 0;
-	/* Store variable names and pointers. */
-
 	te_variable vars[] = { {"r", &r}, {"theta", &theta}, {"phi", &phi} };
 
 	int err;
-	/* Compile the expression with variables. */
 	te_expr* expr = te_compile(function, vars, 3, &err);
 
 	if (expr) {
-
-		fun_val = te_eval(expr); /* Returns 5. */
-
+		fun_val = te_eval(expr); 
 		te_free(expr);
 	}
 	else {
@@ -60,8 +55,8 @@ void Chart::draw(wxDC* dc, int width, int height, Mode mode,const char* function
 
 	Matrix4 rotation = Matrix4::get_identity();
 	rotation = rotation * Matrix4::get_rotation_Y(m_rotY);
-	rotation = rotation * Matrix4::get_rotation_X(m_rotX);
 	rotation = rotation * Matrix4::get_rotation_Z(m_rotZ);
+	rotation = rotation * Matrix4::get_rotation_X(m_rotX);
 
 	Matrix4 transform = Matrix4::get_identity();
 	transform = transform * Matrix4::get_translation(width / 2, height / 2, 0);

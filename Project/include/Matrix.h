@@ -66,7 +66,7 @@ public:
 	static Matrix4 get_rotation_X(double angle);
 	static Matrix4 get_rotation_Y(double angle);
 	static Matrix4 get_rotation_Z(double angle);
-
+	
 };
 
 Vector4 SphericalToCartesian(double r, double theta, double phi);

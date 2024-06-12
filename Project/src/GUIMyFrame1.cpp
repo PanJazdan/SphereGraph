@@ -8,9 +8,9 @@ GUIMyFrame1::GUIMyFrame1(wxWindow* parent)
 	MyFrame1(parent)
 {
 	chart = new Chart();
-	chart->setRadius(200);
-	chart->setResPhi(100);
-	chart->setResTheta(100);
+	chart->setRadius(R_slider->GetValue());
+	chart->setResPhi(Phi_slider->GetValue());
+	chart->setResTheta(Tetha_slider->GetValue());
 	chart->setfunctionRange(fun_equation.c_str());
 	this->MousePos = wxGetMousePosition();
 }
@@ -160,19 +160,19 @@ void GUIMyFrame1::Z_rot_sliderOnScroll(wxScrollEvent& event)
 
 void GUIMyFrame1::m_panel1OnMotion(wxMouseEvent& event)
 {	
-	wxPoint tmp_pos;
+	static wxPoint tmp_pos;
 	if (!event.LeftIsDown()) {
 		tmp_pos = event.GetPosition(); //zapamiêtanie ostatniej pozycji myszki przed klikniêciem 
 	}
-
+	
 	if (event.Dragging()) {
-		if (tmp_pos != this->MousePos) {
+		if (tmp_pos != event.GetPosition()) {
 
-			chart->setRotY((tmp_pos.x - this->MousePos.x) * M_PI / 360);
-			chart->setRotX((tmp_pos.y - this->MousePos.y) * M_PI / -360);
+			chart->setRotY(tmp_pos.x - event.GetPosition().x * M_PI / 360);
+			chart->setRotX(tmp_pos.y - event.GetPosition().y * M_PI / 360);
 			repaint();
 		}
 	}
-	this->MousePos = event.GetPosition();
+
 }
 
