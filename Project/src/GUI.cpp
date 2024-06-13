@@ -19,7 +19,7 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	wxBoxSizer* bSizer2;
 	bSizer2 = new wxBoxSizer( wxVERTICAL );
 
-	mode_CheckBox = new wxCheckBox( this, wxID_ANY, wxT("Check Me!"), wxDefaultPosition, wxDefaultSize, 0 );
+	mode_CheckBox = new wxCheckBox( this, wxID_ANY, wxT("Color Mode"), wxDefaultPosition, wxDefaultSize, 0 );
 	bSizer2->Add( mode_CheckBox, 0, wxALIGN_CENTER|wxALL, 5 );
 
 	m_staticText8 = new wxStaticText( this, wxID_ANY, wxT("Function"), wxDefaultPosition, wxDefaultSize, 0 );
@@ -37,7 +37,7 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 
 	bSizer2->Add( m_staticText_R, 0, wxALIGN_CENTER|wxALL|wxRESERVE_SPACE_EVEN_IF_HIDDEN, 5 );
 
-	R_slider = new wxSlider( this, wxID_ANY, 100, 1, 300, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );
+	R_slider = new wxSlider( this, wxID_ANY, 50, 1, 200, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );
 	R_slider->SetBackgroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_SCROLLBAR ) );
 
 	bSizer2->Add( R_slider, 0, wxALIGN_CENTER|wxALL, 5 );
@@ -108,16 +108,6 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	Save_button = new wxButton( this, wxID_ANY, wxT("Save"), wxDefaultPosition, wxDefaultSize, 0 );
 	bSizer2->Add( Save_button, 0, wxALIGN_CENTER|wxALL, 5 );
 
-	wxBoxSizer* bSizer4;
-	bSizer4 = new wxBoxSizer( wxVERTICAL );
-
-	m_static_debug_output = new wxStaticText( this, wxID_ANY, wxT("MyLabel"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_static_debug_output->Wrap( -1 );
-	bSizer4->Add( m_static_debug_output, 0, wxALIGN_CENTER|wxALL, 5 );
-
-
-	bSizer2->Add( bSizer4, 1, wxEXPAND, 5 );
-
 
 	bSizer1->Add( bSizer2, 1, wxEXPAND, 5 );
 
@@ -138,8 +128,8 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	this->Layout();
 	m_statusBar = this->CreateStatusBar( 1, wxSTB_SIZEGRIP, wxID_ANY );
 	m_statusBar->SetBackgroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_INACTIVECAPTION ) );
-	m_statusBar->SetMinSize( wxSize( -1,10 ) );
-	m_statusBar->SetMaxSize( wxSize( -1,15 ) );
+	m_statusBar->SetMinSize( wxSize( -1,5 ) );
+	m_statusBar->SetMaxSize( wxSize( -1,10 ) );
 
 
 	this->Centre( wxBOTH );
@@ -204,8 +194,16 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	Z_rot_slider->Connect( wxEVT_SCROLL_THUMBTRACK, wxScrollEventHandler( MyFrame1::Z_rot_sliderOnScroll ), NULL, this );
 	Z_rot_slider->Connect( wxEVT_SCROLL_THUMBRELEASE, wxScrollEventHandler( MyFrame1::Z_rot_sliderOnScroll ), NULL, this );
 	Z_rot_slider->Connect( wxEVT_SCROLL_CHANGED, wxScrollEventHandler( MyFrame1::Z_rot_sliderOnScroll ), NULL, this );
+	Scale_slider->Connect( wxEVT_SCROLL_TOP, wxScrollEventHandler( MyFrame1::Scale_sliderOnScroll ), NULL, this );
+	Scale_slider->Connect( wxEVT_SCROLL_BOTTOM, wxScrollEventHandler( MyFrame1::Scale_sliderOnScroll ), NULL, this );
+	Scale_slider->Connect( wxEVT_SCROLL_LINEUP, wxScrollEventHandler( MyFrame1::Scale_sliderOnScroll ), NULL, this );
+	Scale_slider->Connect( wxEVT_SCROLL_LINEDOWN, wxScrollEventHandler( MyFrame1::Scale_sliderOnScroll ), NULL, this );
+	Scale_slider->Connect( wxEVT_SCROLL_PAGEUP, wxScrollEventHandler( MyFrame1::Scale_sliderOnScroll ), NULL, this );
+	Scale_slider->Connect( wxEVT_SCROLL_PAGEDOWN, wxScrollEventHandler( MyFrame1::Scale_sliderOnScroll ), NULL, this );
+	Scale_slider->Connect( wxEVT_SCROLL_THUMBTRACK, wxScrollEventHandler( MyFrame1::Scale_sliderOnScroll ), NULL, this );
+	Scale_slider->Connect( wxEVT_SCROLL_THUMBRELEASE, wxScrollEventHandler( MyFrame1::Scale_sliderOnScroll ), NULL, this );
+	Scale_slider->Connect( wxEVT_SCROLL_CHANGED, wxScrollEventHandler( MyFrame1::Scale_sliderOnScroll ), NULL, this );
 	Save_button->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MyFrame1::Save_buttonOnButtonClick ), NULL, this );
-	m_static_debug_output->Connect( wxEVT_MOTION, wxMouseEventHandler( MyFrame1::m_staticTextOnMotion ), NULL, this );
 	m_panel1->Connect( wxEVT_MOTION, wxMouseEventHandler( MyFrame1::m_panel1OnMotion ), NULL, this );
 	m_panel1->Connect( wxEVT_UPDATE_UI, wxUpdateUIEventHandler( MyFrame1::m_panel1OnUpdateUI ), NULL, this );
 }
@@ -272,8 +270,16 @@ MyFrame1::~MyFrame1()
 	Z_rot_slider->Disconnect( wxEVT_SCROLL_THUMBTRACK, wxScrollEventHandler( MyFrame1::Z_rot_sliderOnScroll ), NULL, this );
 	Z_rot_slider->Disconnect( wxEVT_SCROLL_THUMBRELEASE, wxScrollEventHandler( MyFrame1::Z_rot_sliderOnScroll ), NULL, this );
 	Z_rot_slider->Disconnect( wxEVT_SCROLL_CHANGED, wxScrollEventHandler( MyFrame1::Z_rot_sliderOnScroll ), NULL, this );
+	Scale_slider->Disconnect( wxEVT_SCROLL_TOP, wxScrollEventHandler( MyFrame1::Scale_sliderOnScroll ), NULL, this );
+	Scale_slider->Disconnect( wxEVT_SCROLL_BOTTOM, wxScrollEventHandler( MyFrame1::Scale_sliderOnScroll ), NULL, this );
+	Scale_slider->Disconnect( wxEVT_SCROLL_LINEUP, wxScrollEventHandler( MyFrame1::Scale_sliderOnScroll ), NULL, this );
+	Scale_slider->Disconnect( wxEVT_SCROLL_LINEDOWN, wxScrollEventHandler( MyFrame1::Scale_sliderOnScroll ), NULL, this );
+	Scale_slider->Disconnect( wxEVT_SCROLL_PAGEUP, wxScrollEventHandler( MyFrame1::Scale_sliderOnScroll ), NULL, this );
+	Scale_slider->Disconnect( wxEVT_SCROLL_PAGEDOWN, wxScrollEventHandler( MyFrame1::Scale_sliderOnScroll ), NULL, this );
+	Scale_slider->Disconnect( wxEVT_SCROLL_THUMBTRACK, wxScrollEventHandler( MyFrame1::Scale_sliderOnScroll ), NULL, this );
+	Scale_slider->Disconnect( wxEVT_SCROLL_THUMBRELEASE, wxScrollEventHandler( MyFrame1::Scale_sliderOnScroll ), NULL, this );
+	Scale_slider->Disconnect( wxEVT_SCROLL_CHANGED, wxScrollEventHandler( MyFrame1::Scale_sliderOnScroll ), NULL, this );
 	Save_button->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MyFrame1::Save_buttonOnButtonClick ), NULL, this );
-	m_static_debug_output->Disconnect( wxEVT_MOTION, wxMouseEventHandler( MyFrame1::m_staticTextOnMotion ), NULL, this );
 	m_panel1->Disconnect( wxEVT_MOTION, wxMouseEventHandler( MyFrame1::m_panel1OnMotion ), NULL, this );
 	m_panel1->Disconnect( wxEVT_UPDATE_UI, wxUpdateUIEventHandler( MyFrame1::m_panel1OnUpdateUI ), NULL, this );
 

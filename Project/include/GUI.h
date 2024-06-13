@@ -59,7 +59,6 @@ class MyFrame1 : public wxFrame
 		wxStaticText* m_staticText_Scale;
 		wxSlider* Scale_slider;
 		wxButton* Save_button;
-		wxStaticText* m_static_debug_output;
 		wxPanel* m_panel1;
 		wxStatusBar* m_statusBar;
 
@@ -75,15 +74,15 @@ class MyFrame1 : public wxFrame
 		virtual void X_rot_sliderOnScroll( wxScrollEvent& event ) { event.Skip(); }
 		virtual void Y_rot_sliderOnScroll( wxScrollEvent& event ) { event.Skip(); }
 		virtual void Z_rot_sliderOnScroll( wxScrollEvent& event ) { event.Skip(); }
+		virtual void Scale_sliderOnScroll( wxScrollEvent& event ) { event.Skip(); }
 		virtual void Save_buttonOnButtonClick( wxCommandEvent& event ) { event.Skip(); }
-		virtual void m_staticTextOnMotion( wxMouseEvent& event ) { event.Skip(); }
 		virtual void m_panel1OnMotion( wxMouseEvent& event ) { event.Skip(); }
 		virtual void m_panel1OnUpdateUI( wxUpdateUIEvent& event ) { event.Skip(); }
 
 
 	public:
 
-		MyFrame1( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 950,850 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
+		MyFrame1( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 950,800 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
 
 		~MyFrame1();
 
