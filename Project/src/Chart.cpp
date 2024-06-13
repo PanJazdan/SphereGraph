@@ -90,8 +90,8 @@ void Chart::draw(wxDC* dc, int width, int height, Mode mode,const char* function
 		int x = vec.get_X();
 		int y = vec.get_Y();
 
-		if (x+1 > width || x-1 < 0)  { arr.pop_back(); continue; }
-		if (y+1 > height || y-1 < 0) { arr.pop_back(); continue; }
+		if (x+1 >= width || x-1 < 0)  { arr.pop_back(); continue; }
+		if (y+1 >= height || y-1 < 0) { arr.pop_back(); continue; }
 	
 		int idxs[5] = { index(x - 1, y), index(x + 1, y), index(x, y - 1), index(x, y + 1), index(x, y) };
 
