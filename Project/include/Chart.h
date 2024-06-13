@@ -3,6 +3,7 @@
 
 #include <wx/dc.h>
 #include <math.h>
+#include <GUI.h>
 
 #define PHI_MIN 0.0
 #define PHI_MAX 2.0 * M_PI
