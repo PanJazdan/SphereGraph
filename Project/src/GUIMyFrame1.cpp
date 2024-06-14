@@ -176,3 +176,6 @@ void GUIMyFrame1::m_panel1OnMotion(wxMouseEvent& event)
 
 }
 
+void Scale_sliderOnScroll(wxScrollEvent& event) {
+
+}

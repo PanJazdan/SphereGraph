@@ -30,6 +30,7 @@ protected:
 	void Save_buttonOnButtonClick(wxCommandEvent& event);
 	void m_panel1OnUpdateUI(wxUpdateUIEvent& event);
 	void m_panel1OnMotion(wxMouseEvent& event);
+	void Scale_sliderOnScroll(wxScrollEvent& event);
 public:
 	/** Constructor */
 	GUIMyFrame1(wxWindow* parent);
