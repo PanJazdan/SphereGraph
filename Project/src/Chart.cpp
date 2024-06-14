@@ -53,6 +53,9 @@ void Chart::draw(wxDC* dc, int width, int height, Mode mode,const char* function
 	std::vector<Vector4> arr;
 	arr.reserve(m_res_theta * m_res_phi);
 
+	Matrix4 scale = Matrix4::get_identity();
+	scale = scale * Matrix4::get_scale(m_scale,m_scale, m_scale);
+
 	Matrix4 rotation = Matrix4::get_identity();
 	rotation = rotation * Matrix4::get_rotation_Y(m_rotY);
 	rotation = rotation * Matrix4::get_rotation_Z(m_rotZ);
@@ -60,7 +63,7 @@ void Chart::draw(wxDC* dc, int width, int height, Mode mode,const char* function
 
 	Matrix4 transform = Matrix4::get_identity();
 	transform = transform * Matrix4::get_translation(width / 2, height / 2, 0);
-	transform = transform * rotation;
+	transform = transform * rotation * scale;
 
 	double dphi = (PHI_MAX - PHI_MIN) / (m_res_phi - 1);
 	double dtheta = (THETA_MAX - THETA_MIN) / (m_res_theta - 1);

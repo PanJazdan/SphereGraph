@@ -100,7 +100,7 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	m_staticText_Scale->Wrap( -1 );
 	bSizer2->Add( m_staticText_Scale, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 5 );
 
-	Scale_slider = new wxSlider( this, wxID_ANY, 1, 0, 2, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );
+	Scale_slider = new wxSlider( this, wxID_ANY, 1, 1, 50, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );
 	Scale_slider->SetBackgroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_SCROLLBAR ) );
 
 	bSizer2->Add( Scale_slider, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 5 );

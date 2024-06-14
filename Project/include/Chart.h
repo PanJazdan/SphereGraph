@@ -27,11 +27,13 @@ public:
 	void setRotX(double rotX) { m_rotX = rotX; }
 	void setRotY(double rotY) { m_rotY = rotY; }
 	void setRotZ(double rotZ) { m_rotZ = rotZ; }
+	void setScale(double scale) { m_scale = scale; }
 private:
 	double m_r;
 	unsigned m_res_phi, m_res_theta;
 	double m_rotX, m_rotY, m_rotZ;
 	double m_w_min, m_w_max;
+	double m_scale = 1;
 	
 };
 

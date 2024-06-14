@@ -176,6 +176,8 @@ void GUIMyFrame1::m_panel1OnMotion(wxMouseEvent& event)
 
 }
 
-void Scale_sliderOnScroll(wxScrollEvent& event) {
-
+void GUIMyFrame1::Scale_sliderOnScroll(wxScrollEvent& event) {
+	double value = Scale_slider->GetValue();
+	chart->setScale(value);
+	repaint();
 }
