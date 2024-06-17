@@ -16,7 +16,6 @@ GUIMyFrame1::GUIMyFrame1(wxWindow* parent)
 }
 
 GUIMyFrame1::~GUIMyFrame1() {
-	delete fun_expr_textCtrl;
 	delete chart;
 }
 
