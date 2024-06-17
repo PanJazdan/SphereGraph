@@ -24,11 +24,17 @@ public:
 	void setResPhi(double res_phi) { m_res_phi = res_phi; }
 	void setResTheta(double res_theta) { m_res_theta = res_theta; }
 	void setRadius(double r) { m_r = r; }
+
 	void setRotX(double rotX) { m_rotX = rotX; }
+	double getRotX() { return m_rotX; }
 	void setRotY(double rotY) { m_rotY = rotY; }
+	double getRotY() { return m_rotY; }
 	void setRotZ(double rotZ) { m_rotZ = rotZ; }
+	double getRotZ() { return m_rotZ; }
+
 	void setScale(double scale) { m_scale = scale; }
 	double getScale() { return m_scale; }
+
 private:
 	double m_r;
 	unsigned m_res_phi, m_res_theta;

@@ -35,7 +35,6 @@ void GUIMyFrame1::m_panel1OnUpdateUI(wxUpdateUIEvent& event) {
 
 void GUIMyFrame1::function_equationOnText(wxCommandEvent& event)
 {
-
 	fun_equation = fun_expr_textCtrl->GetValue().ToStdString();
 	repaint();
 }
@@ -161,15 +160,20 @@ void GUIMyFrame1::Z_rot_sliderOnScroll(wxScrollEvent& event)
 void GUIMyFrame1::m_panel1OnMotion(wxMouseEvent& event)
 {	
 	static wxPoint tmp_pos;
-	if (!event.LeftIsDown()) {
-		tmp_pos = event.GetPosition(); //zapamiêtanie ostatniej pozycji myszki przed klikniêciem 
-	}
-	
+	static bool flag = true;
+	//if (!event.LeftIsDown()) {
+	//	tmp_pos = event.GetPosition(); //zapamiêtanie ostatniej pozycji myszki przed klikniêciem 
+	//}
 	if (event.Dragging()) {
+		if (flag) {
+			flag = !flag;
+			tmp_pos = event.GetPosition();
+		}
 		if (tmp_pos != event.GetPosition()) {
-
-			chart->setRotY(tmp_pos.x - event.GetPosition().x * M_PI / 360);
-			chart->setRotX(tmp_pos.y - event.GetPosition().y * M_PI / 360);
+			double rotY = chart->getRotY() + (tmp_pos.x - event.GetPosition().x) * M_PI / 180 / 1000;
+			double rotX = chart->getRotX() + (tmp_pos.y - event.GetPosition().y) * M_PI / 180 / 1000;
+			chart->setRotY(rotY);
+			chart->setRotX(rotX);
 			repaint();
 		}
 	}

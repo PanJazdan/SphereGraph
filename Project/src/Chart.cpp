@@ -106,16 +106,12 @@ void Chart::draw(wxDC* dc, int width, int height, Mode mode,const char* function
 				data[idxs[i] + 1] = 0;
 				data[idxs[i] + 2] = 255 - c;
 			}
-			//dc->SetBrush(wxBrush(wxColour(c, 0, 255 - c)));
-			//dc->SetPen(wxPen(wxColour(c, 0, 255 - c)));
 		}
 		else {
 			for (int i = 0; i < 5; i++) {
 				std::memset(data + idxs[i], 0, 3);
 			}
 		}
-
-		//dc->DrawCircle(vec.get_X(), vec.get_Y(), 2);
 		arr.pop_back();
 	}
 	wxImage buffer;
@@ -123,8 +119,3 @@ void Chart::draw(wxDC* dc, int width, int height, Mode mode,const char* function
 	wxBitmap bitmap(buffer);
 	dc->DrawBitmap(bitmap, 0, 0);
 }
-
-
-//void Chart::drawCurve(wxDC* dc, int width, int height, double value) {
-//
-//}
