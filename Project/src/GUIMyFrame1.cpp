@@ -11,8 +11,8 @@ GUIMyFrame1::GUIMyFrame1(wxWindow* parent)
 	chart->setRadius(R_slider->GetValue());
 	chart->setResPhi(Phi_slider->GetValue());
 	chart->setResTheta(Tetha_slider->GetValue());
-	chart->setfunctionRange(fun_equation.c_str());
-	this->MousePos = wxGetMousePosition();
+	chart->setExpr(fun_expr_textCtrl->GetValue().ToStdString());
+	chart->setfunctionRange();
 }
 
 GUIMyFrame1::~GUIMyFrame1() {
@@ -25,7 +25,7 @@ void GUIMyFrame1::repaint() {
 
 	Mode mode = (mode_CheckBox->IsChecked() ? Mode::COLOUR : Mode::VALUE);
 	wxSize size = m_panel1->GetSize();
-	chart->draw(&dc, size.GetWidth(), size.GetHeight(), mode,this->fun_equation.c_str());
+	chart->draw(&dc, size.GetWidth(), size.GetHeight(), mode);
 }
 
 void GUIMyFrame1::m_panel1OnUpdateUI(wxUpdateUIEvent& event) {
@@ -34,7 +34,7 @@ void GUIMyFrame1::m_panel1OnUpdateUI(wxUpdateUIEvent& event) {
 
 void GUIMyFrame1::function_equationOnText(wxCommandEvent& event)
 {
-	fun_equation = fun_expr_textCtrl->GetValue().ToStdString();
+	chart->setExpr(fun_expr_textCtrl->GetValue().ToStdString());
 	repaint();
 }
 
@@ -50,7 +50,7 @@ void GUIMyFrame1::R_sliderOnScroll(wxScrollEvent& event)
 	//TODO: update text
 	unsigned value = R_slider->GetValue();
 	chart->setRadius(value);
-	chart->setfunctionRange(this->fun_equation.c_str());
+	chart->setfunctionRange();
 	R_value_input->SetValue(std::to_string(value));
 	repaint();
 }
@@ -60,7 +60,7 @@ void GUIMyFrame1::R_value_inputOnText(wxCommandEvent& event)
 	int value;
 	R_value_input->GetValue().ToInt(&value);
 	chart->setRadius(value);
-	chart->setfunctionRange(this->fun_equation.c_str());
+	chart->setfunctionRange();
 	R_slider->SetValue(value);
 	repaint();
 }
@@ -70,7 +70,7 @@ void GUIMyFrame1::Tetha_sliderOnScroll(wxScrollEvent& event)
 	//TODO: update text
 	unsigned value = Tetha_slider->GetValue();
 	chart->setResTheta(value);
-	chart->setfunctionRange(this->fun_equation.c_str());
+	chart->setfunctionRange();
 	Tetha_value_input->SetValue(std::to_string(value));
 	repaint();
 }
@@ -81,7 +81,7 @@ void GUIMyFrame1::Tetha_value_inputOnText(wxCommandEvent& event)
 	int value;
 	Tetha_value_input->GetValue().ToInt(&value);
 	chart->setResTheta(value);
-	chart->setfunctionRange(this->fun_equation.c_str());
+	chart->setfunctionRange();
 	Tetha_slider->SetValue(value);
 	repaint();
 }
@@ -91,7 +91,7 @@ void GUIMyFrame1::Phi_sliderOnScroll(wxScrollEvent& event)
 	//TODO: update text
 	unsigned value = Phi_slider->GetValue();
 	chart->setResPhi(value);
-	chart->setfunctionRange(this->fun_equation.c_str());
+	chart->setfunctionRange();
 	Phi_value_input->SetValue(std::to_string(value));
 	repaint();
 }
@@ -102,7 +102,7 @@ void GUIMyFrame1::Phi_value_OnText(wxCommandEvent& event)
 	int value;
 	Phi_value_input->GetValue().ToInt(&value);
 	chart->setResPhi(value);
-	chart->setfunctionRange(this->fun_equation.c_str());
+	chart->setfunctionRange();
 	Phi_slider->SetValue(value);
 	repaint();
 }

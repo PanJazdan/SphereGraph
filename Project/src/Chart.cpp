@@ -1,42 +1,36 @@
 #include "Chart.h"
 #include "Matrix.h"
 #include <queue>
-#include "tinyexpr.h"
 
-//tinyexpr one header do parsowania wyrazen
-// open mp 
-// rysowanie na bitmapie
-
-double Chart::functionValue(double r, double theta, double phi,const char* function) {
-	
-	double fun_val = 0;
-	te_variable vars[] = { {"r", &r}, {"theta", &theta}, {"phi", &phi} };
-
-	int err;
-	te_expr* expr = te_compile(function, vars, 3, &err);
-
-	if (expr) {
-		fun_val = te_eval(expr); 
-		te_free(expr);
-	}
-	else {
-		fun_val = sin(phi);
-	}
-
-	return fun_val ; 
-
+void Chart::setExpr(std::string function) {
+	m_str_expr = function;
 }
 
-void Chart::setfunctionRange(const char* function) {
+bool Chart::bindExpr(double& r, double& phi, double& theta) {
+	te_variable vars[] = { {"r", &m_r}, {"theta", &theta}, {"phi", &phi} };
+
+	int err;
+	te_free(m_to_eval);
+	m_to_eval = te_compile(m_str_expr.c_str(), vars, 3, &err);
+	return m_to_eval;
+}
+
+double Chart::functionValue() {
+	return te_eval(m_to_eval);
+}
+
+void Chart::setfunctionRange() {
 	double dphi = (PHI_MAX - PHI_MIN) / (m_res_phi - 1);
 	double dtheta = (THETA_MAX - THETA_MIN) / (m_res_theta - 1);
-	m_w_min = functionValue(m_r, THETA_MIN, PHI_MIN,function);
+	double theta = 0, phi = 0;
+	bindExpr(m_r, phi, theta);
+	m_w_min = functionValue();
 	m_w_max = m_w_min;
 	for (int i = 0; i < m_res_theta; i++) {
-		double theta = THETA_MIN + dtheta * i;
+		theta = THETA_MIN + dtheta * i;
 		for (int j = 0; j < m_res_phi; j++) {
-			double phi = PHI_MIN + dphi * j;
-			double w = functionValue(m_r, theta, phi,function);
+			phi = PHI_MIN + dphi * j;
+			double w = functionValue();
 
 			if (w > m_w_max) m_w_max = w;
 			if (w < m_w_min) m_w_min = w;
@@ -44,7 +38,7 @@ void Chart::setfunctionRange(const char* function) {
 	}
 }
 
-void Chart::draw(wxDC* dc, int width, int height, Mode mode,const char* function) {
+void Chart::draw(wxDC* dc, int width, int height, Mode mode) {
 	dc->SetBackground(wxBrush(wxColour(255, 255, 255)));
 	dc->Clear();
 	dc->SetPen(wxPen(wxColour(255, 0, 0)));
@@ -67,12 +61,15 @@ void Chart::draw(wxDC* dc, int width, int height, Mode mode,const char* function
 
 	double dphi = (PHI_MAX - PHI_MIN) / (m_res_phi - 1);
 	double dtheta = (THETA_MAX - THETA_MIN) / (m_res_theta - 1);
+	double theta = 0, phi = 0;
+
+	bindExpr(m_r, phi, theta);
 
 	for (int i = 0; i < m_res_theta; i++) {
-		double theta = THETA_MIN + dtheta * i;
+		theta = THETA_MIN + dtheta * i;
 		for (int j = 0; j < m_res_phi; j++) {
-			double phi = PHI_MIN + dphi * j;
-			double w = functionValue(m_r, theta, phi,function);
+			phi = PHI_MIN + dphi * j;
+			double w = functionValue();
 			double radius = mode == Mode::COLOUR ? m_r : map(w, m_w_min, m_w_max, 0, m_r);
 
 			Vector4 vec = SphericalToCartesian(radius, theta, phi);

@@ -4,6 +4,7 @@
 #include <wx/dc.h>
 #include <math.h>
 #include <GUI.h>
+#include "tinyexpr.h"
 
 #define PHI_MIN 0.0
 #define PHI_MAX 2.0 * M_PI
@@ -17,9 +18,9 @@ enum class Mode {
 
 class Chart {
 public:
-	double functionValue(double r, double theta, double phi,const char* function);
-	void setfunctionRange(const char* function);
-	void draw(wxDC* dc, int width, int height, Mode mode,const char* function);
+	double functionValue();
+	void setfunctionRange();
+	void draw(wxDC* dc, int width, int height, Mode mode);
 
 	void setResPhi(double res_phi) { m_res_phi = res_phi; }
 	void setResTheta(double res_theta) { m_res_theta = res_theta; }
@@ -35,12 +36,17 @@ public:
 	void setScale(double scale) { m_scale = scale; }
 	double getScale() { return m_scale; }
 
+	void setExpr(std::string function);
+
 private:
+	bool bindExpr(double& r, double& phi, double& theta);
 	double m_r;
 	unsigned m_res_phi, m_res_theta;
 	double m_rotX, m_rotY, m_rotZ;
 	double m_w_min, m_w_max;
 	double m_scale = 1;
+	std::string m_str_expr;
+	te_expr* m_to_eval;
 	
 };
 

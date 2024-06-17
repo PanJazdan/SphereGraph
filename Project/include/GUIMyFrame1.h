@@ -40,8 +40,6 @@ public:
 	//// end generated class members
 
 	Chart* chart;
-	wxPoint MousePos;
-	std::string fun_equation = fun_expr_textCtrl->GetValue().ToStdString();
 };
 
 #endif // __GUIMyFrame1__
