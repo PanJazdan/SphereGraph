@@ -30,6 +30,7 @@
     <ClInclude Include="include\Chart.h" />
     <ClInclude Include="include\GUI.h" />
     <ClInclude Include="include\GUIMyFrame1.h" />
+    <ClInclude Include="include\Logger.h" />
     <ClInclude Include="include\Matrix.h" />
     <ClInclude Include="include\tinyexpr.h" />
   </ItemGroup>

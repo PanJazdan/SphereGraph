@@ -1,4 +1,5 @@
 #include "GUIMyFrame1.h"
+#include "Logger.h"
 
 #include <wx/dcbuffer.h>
 #include <wx/filedlg.h>
@@ -7,6 +8,7 @@ GUIMyFrame1::GUIMyFrame1(wxWindow* parent)
 	:
 	MyFrame1(parent)
 {
+	util::Logger::getInstance()->setStatusBar(m_statusBar);
 	chart = new Chart();
 	chart->setRadius(R_slider->GetValue());
 	chart->setResPhi(Phi_slider->GetValue());

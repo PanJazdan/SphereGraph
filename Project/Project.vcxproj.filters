@@ -14,5 +14,6 @@
     <ClInclude Include="include\Chart.h" />
     <ClInclude Include="include\Matrix.h" />
     <ClInclude Include="include\tinyexpr.h" />
+    <ClInclude Include="include\Logger.h" />
   </ItemGroup>
 </Project>

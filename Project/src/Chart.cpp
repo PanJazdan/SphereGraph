@@ -1,5 +1,6 @@
 #include "Chart.h"
 #include "Matrix.h"
+#include "Logger.h"
 #include <queue>
 
 void Chart::setExpr(std::string function) {
@@ -12,6 +13,7 @@ bool Chart::bindExpr(double& r, double& phi, double& theta) {
 	int err;
 	te_free(m_to_eval);
 	m_to_eval = te_compile(m_str_expr.c_str(), vars, 3, &err);
+	util::Logger::getInstance()->log(m_to_eval ? "" : "Blad przy parsowaniu funkcji!");
 	return m_to_eval;
 }
 
