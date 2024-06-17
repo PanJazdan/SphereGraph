@@ -205,6 +205,7 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	Scale_slider->Connect( wxEVT_SCROLL_CHANGED, wxScrollEventHandler( MyFrame1::Scale_sliderOnScroll ), NULL, this );
 	Save_button->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MyFrame1::Save_buttonOnButtonClick ), NULL, this );
 	m_panel1->Connect( wxEVT_MOTION, wxMouseEventHandler( MyFrame1::m_panel1OnMotion ), NULL, this );
+	m_panel1->Connect(wxEVT_MOUSEWHEEL, wxMouseEventHandler(MyFrame1::m_panel1OnMouseWheel), NULL, this);
 	m_panel1->Connect( wxEVT_UPDATE_UI, wxUpdateUIEventHandler( MyFrame1::m_panel1OnUpdateUI ), NULL, this );
 }
 
@@ -281,6 +282,7 @@ MyFrame1::~MyFrame1()
 	Scale_slider->Disconnect( wxEVT_SCROLL_CHANGED, wxScrollEventHandler( MyFrame1::Scale_sliderOnScroll ), NULL, this );
 	Save_button->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MyFrame1::Save_buttonOnButtonClick ), NULL, this );
 	m_panel1->Disconnect( wxEVT_MOTION, wxMouseEventHandler( MyFrame1::m_panel1OnMotion ), NULL, this );
+	m_panel1->Disconnect(wxEVT_MOUSEWHEEL, wxMouseEventHandler(MyFrame1::m_panel1OnMouseWheel), NULL, this);
 	m_panel1->Disconnect( wxEVT_UPDATE_UI, wxUpdateUIEventHandler( MyFrame1::m_panel1OnUpdateUI ), NULL, this );
 
 }

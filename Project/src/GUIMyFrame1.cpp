@@ -181,3 +181,28 @@ void GUIMyFrame1::Scale_sliderOnScroll(wxScrollEvent& event) {
 	chart->setScale(value);
 	repaint();
 }
+
+void GUIMyFrame1::m_panel1OnMouseWheel(wxMouseEvent& event)
+{
+	int wheelRotation = event.GetWheelRotation();
+	double scale  = chart->getScale();
+	if (scale < 1)
+		chart->setScale(1);
+
+	if (wheelRotation > 0) {
+		if (scale < 50.0f) {
+			chart->setScale(scale+2.0f);
+			Scale_slider->SetValue(scale+2.0f);
+		}
+	}
+	else {
+		if (scale > 1.0f) {
+			chart->setScale(scale - 2.0f);
+			Scale_slider->SetValue(scale - 2.0f);
+		}
+	}
+	
+	
+	repaint();
+}
+

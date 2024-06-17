@@ -1510,6 +1510,7 @@
                 <property name="window_name"></property>
                 <property name="window_style">wxTAB_TRAVERSAL</property>
                 <event name="OnMotion">m_panel1OnMotion</event>
+                <event name="OnMouseWheel">m_panel1OnMouseWheel</event>
                 <event name="OnUpdateUI">m_panel1OnUpdateUI</event>
               </object>
             </object>

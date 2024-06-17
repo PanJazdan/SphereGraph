@@ -77,12 +77,14 @@ class MyFrame1 : public wxFrame
 		virtual void Scale_sliderOnScroll( wxScrollEvent& event ) { event.Skip(); }
 		virtual void Save_buttonOnButtonClick( wxCommandEvent& event ) { event.Skip(); }
 		virtual void m_panel1OnMotion( wxMouseEvent& event ) { event.Skip(); }
+		virtual void m_panel1OnMouseWheel(wxMouseEvent& event) { event.Skip(); }
 		virtual void m_panel1OnUpdateUI( wxUpdateUIEvent& event ) { event.Skip(); }
+		
 
 
 	public:
 
-		MyFrame1( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 950,800 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
+		MyFrame1( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 1000,850 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
 
 		~MyFrame1();
 

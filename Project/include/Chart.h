@@ -28,6 +28,7 @@ public:
 	void setRotY(double rotY) { m_rotY = rotY; }
 	void setRotZ(double rotZ) { m_rotZ = rotZ; }
 	void setScale(double scale) { m_scale = scale; }
+	double getScale() { return m_scale; }
 private:
 	double m_r;
 	unsigned m_res_phi, m_res_theta;
