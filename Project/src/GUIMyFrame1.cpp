@@ -43,13 +43,11 @@ void GUIMyFrame1::function_equationOnText(wxCommandEvent& event)
 
 void GUIMyFrame1::mode_OnCheck(wxCommandEvent& event)
 {
-	//TODO: update text 
 	repaint();
 }
 
 void GUIMyFrame1::R_sliderOnScroll(wxScrollEvent& event)
 {
-	//TODO: update text
 	unsigned value = R_slider->GetValue();
 	chart->setRadius(value);
 	chart->setfunctionRange();
@@ -69,7 +67,6 @@ void GUIMyFrame1::R_value_inputOnText(wxCommandEvent& event)
 
 void GUIMyFrame1::Tetha_sliderOnScroll(wxScrollEvent& event)
 {
-	//TODO: update text
 	unsigned value = Tetha_slider->GetValue();
 	chart->setResTheta(value);
 	chart->setfunctionRange();
@@ -79,7 +76,6 @@ void GUIMyFrame1::Tetha_sliderOnScroll(wxScrollEvent& event)
 
 void GUIMyFrame1::Tetha_value_inputOnText(wxCommandEvent& event)
 {
-	// TODO: Implement Tetha_value_inputOnText
 	int value;
 	Tetha_value_input->GetValue().ToInt(&value);
 	chart->setResTheta(value);
@@ -90,7 +86,6 @@ void GUIMyFrame1::Tetha_value_inputOnText(wxCommandEvent& event)
 
 void GUIMyFrame1::Phi_sliderOnScroll(wxScrollEvent& event)
 {
-	//TODO: update text
 	unsigned value = Phi_slider->GetValue();
 	chart->setResPhi(value);
 	chart->setfunctionRange();
@@ -100,7 +95,6 @@ void GUIMyFrame1::Phi_sliderOnScroll(wxScrollEvent& event)
 
 void GUIMyFrame1::Phi_value_OnText(wxCommandEvent& event)
 {
-	// TODO: Implement Phi_value_OnText
 	int value;
 	Phi_value_input->GetValue().ToInt(&value);
 	chart->setResPhi(value);
@@ -136,7 +130,6 @@ void GUIMyFrame1::Save_buttonOnButtonClick(wxCommandEvent& event)
 
 void GUIMyFrame1::X_rot_sliderOnScroll(wxScrollEvent& event)
 {
-	// TODO: Implement X_rot_sliderOnScroll
 	double value = X_rot_slider->GetValue() * M_PI / 180;
 	chart->setRotX(value);
 	repaint();
@@ -147,7 +140,6 @@ void GUIMyFrame1::Y_rot_sliderOnScroll(wxScrollEvent& event)
 	double value = Y_rot_slider->GetValue() * M_PI / 180;
 	chart->setRotY(value);
 	repaint();
-	// TODO: Implement Y_rot_sliderOnScroll
 }
 
 void GUIMyFrame1::Z_rot_sliderOnScroll(wxScrollEvent& event)
@@ -155,7 +147,6 @@ void GUIMyFrame1::Z_rot_sliderOnScroll(wxScrollEvent& event)
 	double value = Z_rot_slider->GetValue() * M_PI / 180;
 	chart->setRotZ(value);
 	repaint();
-	// TODO: Implement Z_rot_sliderOnScroll
 }
 
 void GUIMyFrame1::m_panel1OnMotion(wxMouseEvent& event)
@@ -206,8 +197,6 @@ void GUIMyFrame1::m_panel1OnMouseWheel(wxMouseEvent& event)
 			Scale_slider->SetValue(scale - 2.0f);
 		}
 	}
-	
-	
 	repaint();
 }
 

@@ -128,8 +128,8 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	this->Layout();
 	m_statusBar = this->CreateStatusBar( 1, wxSTB_SIZEGRIP, wxID_ANY );
 	m_statusBar->SetBackgroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_INACTIVECAPTION ) );
-	m_statusBar->SetMinSize( wxSize( -1,5 ) );
-	m_statusBar->SetMaxSize( wxSize( -1,10 ) );
+	m_statusBar->SetMinSize( wxSize( -1,20 ) );
+	m_statusBar->SetMaxSize( wxSize( -1,20 ) );
 
 
 	this->Centre( wxBOTH );
