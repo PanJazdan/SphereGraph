@@ -37,6 +37,7 @@ void GUIMyFrame1::m_panel1OnUpdateUI(wxUpdateUIEvent& event) {
 void GUIMyFrame1::function_equationOnText(wxCommandEvent& event)
 {
 	chart->setExpr(fun_expr_textCtrl->GetValue().ToStdString());
+	chart->setfunctionRange();
 	repaint();
 }
 
